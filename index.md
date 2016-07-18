@@ -172,6 +172,17 @@ sub vcl_recv {
 }
 ```
 
+### lighttpd {#mitigate-lighttpd}
+
+We don't know of a great mitigation for lighttpd (let us know if you have a better one). This will add an additional
+Proxy header to requests. That may cause outgoing requests to fail.
+
+```
+setenv.add-request-header = (
+"Proxy" => "invalid",
+)
+```
+
 ### Microsoft IIS with PHP or a CGI framework {#mitigate-iis}
 
 httpoxy does not affect any Microsoft Web Frameworks, e.g. not ASP.NET nor Active Server Pages. But if you have
